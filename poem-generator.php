@@ -1,20 +1,27 @@
-    <?php include('header.php'); ?>  <!-- Call another file "header.php" -->
-    <div class="container">
-        <div class="wrapper">
+<?php include('header.php'); ?>  <!-- Call another file "header.php" -->
+<div class="container">
+    <div class="wrapper">
         <h1> Here's Your Valentine's Poem </h1> 
         <?php
 
-        //Declare variables
+        //Declare variables to store the values from <form>
         $submit = filter_input(INPUT_POST, 'submit', );
         $colour = filter_input(INPUT_POST, 'colour');
         $noun = filter_input(INPUT_POST, 'noun');
         $person = filter_input(INPUT_POST, 'person');
 
+        //Declare variables to print today's date and the interval until valentine's day
+        $today = new DateTime();
+        $today_string = $today -> format('l, F jS');
+        $valentine = new DateTime('2021-02-14');       
+        $period = $valentine -> diff($today);
+        $period_string = $period -> format('%a days and %h hours left');
+
         //Create a new function with three parameters to generate a message based on the user input
         function poemDisplay($colour, $noun, $person) {
             if ((ctype_alpha($colour) === false) || (ctype_alpha($noun) === false) || (ctype_alpha($person) === false)) 
             {
-                echo "<p><b> Please enter letters </b></p>";                    
+                echo "<p><b> Please enter letters </b></p>";  //If a user types other characters except for alphabets, the alarm will be printed.           
             } else if ($colour === "blue")
             {
                 echo "<div class='poemDiv'>";
@@ -54,12 +61,17 @@
         if(isset($submit) === true) { //If there is the variable "$submit," print the valentine's message.
             poemDisplay($colour, $noun, $person); 
         } else { //If there isn't, let a user know they need to enter their information
-            "<p> Please submit your info! </p>";
+            echo "<p> Please submit your info! </p>";
         }
-
+        
         ?>
-         <a href="index.php" class="btn btn-secondary"> Create Another Poem </a><!-- Go back to index.php -->
-         </div>
+        <a href="index.php" class="btn btn-secondary"> Create Another Poem </a><!-- Go back to index.php -->
+        <?PHP
+        //Print today's date and how long it is left until valentine's day.
+        echo "<p> $today_string now </p>";
+        echo "<p> $period_string until Valentine's day </p>";
+        ?>
         </div>
-    </body>
+    </div>
+</body>
 </html>
