@@ -3,12 +3,15 @@
     <div class="wrapper">
         <h1> Here's Your Valentine's Poem </h1> 
         <?php
-
-        //Declare variables to store the values from <form>
-        $submit = filter_input(INPUT_POST, 'submit', );
+        //Declare variables to store the values from <form>, and set all as global variables.
+        $submit = filter_input(INPUT_POST, 'submit');
         $colour = filter_input(INPUT_POST, 'colour');
         $noun = filter_input(INPUT_POST, 'noun');
         $person = filter_input(INPUT_POST, 'person');
+        global $submit;
+        global $colour;
+        global $noun;
+        global $person;
 
         //Declare variables to print today's date and the interval until valentine's day
         $today = new DateTime();
@@ -21,7 +24,7 @@
         function poemDisplay($colour, $noun, $person) {
             if ((ctype_alpha($colour) === false) || (ctype_alpha($noun) === false) || (ctype_alpha($person) === false)) 
             {
-                echo "<p><b> Please enter letters </b></p>";  //If a user types other characters except for alphabets, the alarm will be printed.           
+                echo "<p><b> Please enter letters only. </b></p>";  //If a user types other characters except for alphabets, the alarm will be printed.           
             } else if ($colour === "blue")
             {
                 echo "<div class='poemDiv'>";
