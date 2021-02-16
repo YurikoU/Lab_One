@@ -19,6 +19,8 @@
         $valentine = new DateTime('2021-02-14');       
         $period = $valentine -> diff($today);
         $period_string = $period -> format('%a days and %h hours left');
+        global $valentine;
+        global $today;
 
         //Create a new function with three parameters to generate a message based on the user input
         function poemDisplay($colour, $noun, $person) {
@@ -71,8 +73,14 @@
         <a href="index.php" class="btn btn-secondary"> Create Another Poem </a><!-- Go back to index.php -->
         <?PHP
         //Print today's date and how long it is left until valentine's day.
-        echo "<p> $today_string now </p>";
-        echo "<p> $period_string until Valentine's day </p>";
+        echo "<p> $today_string today </p>";
+        if ($today <= $valentine)
+        {
+            echo "<p> $period_string until Valentine's day </p>";
+        } else {
+            echo "<p> Valentine's day is passed! </p>";
+        }
+
         ?>
         </div>
     </div>
