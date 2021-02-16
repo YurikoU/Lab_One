@@ -5,7 +5,7 @@
         <?php
 
         //Declare variables to store the values from <form>
-        $submit = filter_input(INPUT_POST, 'submit', );
+        $submit = filter_input(INPUT_POST, 'submit');
         $colour = filter_input(INPUT_POST, 'colour');
         $noun = filter_input(INPUT_POST, 'noun');
         $person = filter_input(INPUT_POST, 'person');
