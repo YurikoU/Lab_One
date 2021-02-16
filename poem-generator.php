@@ -63,9 +63,9 @@
             }
         }
         
-        if(isset($submit) === true) { //If there is the variable "$submit," print the valentine's message.
+        if(empty($submit) === true) { //If all information is submitted, print the valentine's message.
             poemDisplay($colour, $noun, $person); 
-        } else { //If there isn't, let a user know they need to enter their information
+        } else { //If any informartion is empty, let a user know they need to enter their information
             echo "<p> Please submit your info! </p>";
         }
         
