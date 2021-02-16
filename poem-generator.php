@@ -3,13 +3,14 @@
     <div class="wrapper">
         <h1> Here's Your Valentine's Poem </h1> 
         <?php
-        //Declare variables to store the values from <form>, and set all as global variables.
-        $submit = filter_input(INPUT_POST, 'submit');
+
+        //Declare variables to store the values from <form>
+        $submit = filter_input(INPUT_POST, 'submit', );
         $colour = filter_input(INPUT_POST, 'colour');
         $noun = filter_input(INPUT_POST, 'noun');
         $person = filter_input(INPUT_POST, 'person');
         global $submit;
-        global $colour;
+        global $colour ;
         global $noun;
         global $person;
 
@@ -26,7 +27,7 @@
         function poemDisplay($colour, $noun, $person) {
             if ((ctype_alpha($colour) === false) || (ctype_alpha($noun) === false) || (ctype_alpha($person) === false)) 
             {
-                echo "<p><b> Please enter letters only. </b></p>";  //If a user types other characters except for alphabets, the alarm will be printed.           
+                echo "<p><b> Please enter letters </b></p>";  //If a user types other characters except for alphabets, the alarm will be printed.           
             } else if ($colour === "blue")
             {
                 echo "<div class='poemDiv'>";
@@ -63,9 +64,9 @@
             }
         }
         
-        if(empty($submit) === true) { //If all information is submitted, print the valentine's message.
+        if(isset($submit) === true) { //If there is the variable "$submit," print the valentine's message.
             poemDisplay($colour, $noun, $person); 
-        } else { //If any informartion is empty, let a user know they need to enter their information
+        } else { //If there isn't, let a user know they need to enter their information
             echo "<p> Please submit your info! </p>";
         }
         
@@ -80,7 +81,6 @@
         } else {
             echo "<p> Valentine's day is passed! </p>";
         }
-
         ?>
         </div>
     </div>
